@@ -1,0 +1,20 @@
+body {
+  background-color: #AAAA00;
+}
+
+.tbi {
+  align: left;
+  width: 100%
+  height: 5%;
+  background-color: #3C3C3C;
+}
+.tb {
+  align: top;
+  width: 100%
+  height: 10%;
+  background-color: #3C3C3C;
+  color: #FFFFFF;
+}
+a {
+  color:#00ffff;
+}
