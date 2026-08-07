@@ -1,2 +1,5 @@
 User-agent: *
 Disallow: Offline_App_Test, FoxBrew
+Allow: /
+
+Sitemap: https://theluafox86.github.io/
