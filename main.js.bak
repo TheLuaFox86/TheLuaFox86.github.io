@@ -1,0 +1,35 @@
+async function checkDeviceStatus() {
+    // A standard, tiny image file hosted on YouTube's servers
+    const youtubeAssetUrl = 'https://dex.ix';
+    
+    try {
+        // Set a short timeout so the page doesn't hang forever waiting for a blocked connection
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000); // 3-second limit
+
+        await fetch(youtubeAssetUrl, { 
+            mode: 'no-cors', // Prevents cross-origin issues
+            cache: 'no-store', // Ensures it doesn't just read an old cached version
+            signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        console.log("YouTube is accessible. Device is likely unmanaged / on a normal network.");
+        
+    } catch (error) {
+        // If the fetch fails or times out, the network is blocking YouTube
+        console.log("YouTube cannot be reached. Reporting device as a managed/restricted device.");
+        reportAsManagedDevice();
+    }
+}
+
+function reportAsManagedDevice() {
+    // 1. Add a class to the body so you can dynamically hide/show UI elements with CSS
+    document.body.classList.add('is-managed-device');
+    
+    // 2. Example: Change a status indicator or trigger a custom alert on your site
+    document.body.innerHTML = "<h1>Sorry But I Dont Allow This Site In Schools Or Professional Settings</h1>"
+}
+
+// Run the check as soon as the DOM is ready
+window.addEventListener('DOMContentLoaded', checkDeviceStatus);
