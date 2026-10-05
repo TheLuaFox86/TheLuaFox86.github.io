@@ -7,7 +7,7 @@
     document.documentElement.appendChild(style);
     // 2. Perform the fast YouTube check once the basic document frame loads
     window.addEventListener('DOMContentLoaded', async () => {
-        const youtubeAssetUrl = 'https://wandera.com';
+        const youtubeAssetUrl = 'https://www.youtube.com';
         
         try {
             // Set a tight 1.5-second timeout window
